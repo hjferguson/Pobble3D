@@ -1,0 +1,58 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+*.log
+
+# Expo
+.expo/
+.expo-shared/
+
+# iOS
+ios/build/
+ios/Pods/
+*.xcodeproj/*
+!ios/Podfile
+!ios/Podfile.lock
+
+# Android
+android/app/build/
+android/build/
+*.keystore
+*.jks
+
+# Bundles
+*.jsbundle
+
+# Configuration files
+.env
+.env.*  # Ignore all environment-specific files
+
+# Mac System files
+.DS_Store
+
+# JetBrains IDEs
+.idea/
+
+# VS Code
+.vscode/
+
+# React Native specific
+.expo/
+.expo-shared/
+.expo-settings.json
+
+# Metro
+.expo/web/dist/
+
+# Watchman
+.watchmanconfig
+
+# Build artifacts
+build/
+
+# Miscellaneous
+coverage/
+.temp/
