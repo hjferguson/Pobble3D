@@ -13,7 +13,7 @@ const loadFonts = async () => {
       'Segoe-Print': require('./assets/fonts/segoeprint.ttf'),
       'Segoe-Print-Bold': require('./assets/fonts/segoeprint_bold.ttf'),
     });
-    console.log('Fonts loaded successfully');
+    
   } catch (e) {
     console.error('Error loading fonts', e);
   }
@@ -36,11 +36,11 @@ export default function App() {
   }, []);
 
   if (!fontsLoaded) {
-    console.log('Fonts not loaded yet');
+    
     return null; // Return null while fonts are loading
   }
 
-  console.log('Fonts loaded, rendering app');
+  
   return (
     <View style={styles.container}>
       <AppNavigator />
