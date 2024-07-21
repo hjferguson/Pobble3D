@@ -1,1 +1,1 @@
-Goal: Make a fun word game with minimal ad revenue.
+Goal: Make a fun word game with bare minimal ads, and zero freemium bullshit.
