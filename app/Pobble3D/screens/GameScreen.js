@@ -123,40 +123,30 @@ export default function GameScreen() {
     animate();
   };
   
-
   const handleRotate = ({ translationX, translationY }) => {
-    console.log('handleRotate called with', translationX, translationY);
+    
     if(cubeRef.current) {
-      cubeRef.current.rotation.y += translationX * 0.001;
-      cubeRef.current.rotation.x += translationY * 0.001;
-      console.log('Rotate x:', cubeRef.current.rotation.x, 'Rotate y:', cubeRef.current.rotation.y);
-    }
-  }
-
-  const handlePinch = (scale) => {
-    console.log("handlePinch called");
-    if(cubeRef.current) {
-      cubeRef.current.scale.set(scale, scale, scale);
-      console.log('Pinch scale:', scale);
+      cubeRef.current.rotation.y += translationX * 0.00009;
+      cubeRef.current.rotation.x += translationY * 0.00009;
     }
   }
 
   return (
     <View style={styles.container}> 
       <GLView style={styles.glView} onContextCreate={onContextCreate} />
-      <GestureHandler onRotate={handleRotate} onPinch={handlePinch} />
+      <GestureHandler onRotate={handleRotate}  /> 
     </View>
   );
 }
 
-// Styles to ensure the GLView and GestureHandler cover the entire screen
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   glView: {
-    width: width, // Make GLView cover the full width
-    height: height, // Make GLView cover the full height
-    position: 'absolute', // Position it absolutely
+    width: width, 
+    height: height, 
+    position: 'absolute',
   },
 });
