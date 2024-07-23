@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { GLView } from 'expo-gl';
 import * as THREE from 'three';
 import { Renderer } from 'expo-three';
 import { createText } from '../helpers/createText';
 import { loadFonts } from '../helpers/loadFonts';
 import GestureHandler from '../gameCubeLogic/GestureHandler';
+
+const { width, height } = Dimensions.get('window');
 
 export default function GameScreen() {
   const [fontJson, setFontJson] = useState(null);
@@ -139,9 +142,21 @@ export default function GameScreen() {
   }
 
   return (
-    <>
-      <GLView style={{ flex: 1 }} onContextCreate={onContextCreate} />
+    <View style={styles.container}> 
+      <GLView style={styles.glView} onContextCreate={onContextCreate} />
       <GestureHandler onRotate={handleRotate} onPinch={handlePinch} />
-    </>
+    </View>
   );
 }
+
+// Styles to ensure the GLView and GestureHandler cover the entire screen
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  glView: {
+    width: width, // Make GLView cover the full width
+    height: height, // Make GLView cover the full height
+    position: 'absolute', // Position it absolutely
+  },
+});
