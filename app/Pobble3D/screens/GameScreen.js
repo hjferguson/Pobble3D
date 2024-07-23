@@ -31,25 +31,24 @@ export default function GameScreen() {
       console.error('Font JSON not loaded yet');
       return;
     }
-
+  
     const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
-
+  
     const renderer = new Renderer({ gl });
     renderer.setSize(width, height);
-
+  
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(70, width / height, 0.1, 1000);
     camera.position.z = 10;
-
+  
     const geometry = new THREE.BoxGeometry(4, 4, 4);
-    const material = new THREE.MeshBasicMaterial({ color: 0x7A6FB5 });
+    const material = new THREE.MeshBasicMaterial({ color: 0x7A6FB5, side: THREE.DoubleSide });
     const cube = new THREE.Mesh(geometry, material);
     cubeRef.current = cube;
     scene.add(cube);
-
-    //6 sides, 16 letters per size
+  
     const positions = [
-      //side 1
+      // Front face
       { pos: [-1.5, 1.5, 2], rotation: [0, 0, 0] }, { pos: [-0.5, 1.5, 2], rotation: [0, 0, 0] },
       { pos: [0.5, 1.5, 2], rotation: [0, 0, 0] }, { pos: [1.5, 1.5, 2], rotation: [0, 0, 0] },
       { pos: [-1.5, 0.5, 2], rotation: [0, 0, 0] }, { pos: [-0.5, 0.5, 2], rotation: [0, 0, 0] },
@@ -58,7 +57,7 @@ export default function GameScreen() {
       { pos: [0.5, -0.5, 2], rotation: [0, 0, 0] }, { pos: [1.5, -0.5, 2], rotation: [0, 0, 0] },
       { pos: [-1.5, -1.5, 2], rotation: [0, 0, 0] }, { pos: [-0.5, -1.5, 2], rotation: [0, 0, 0] },
       { pos: [0.5, -1.5, 2], rotation: [0, 0, 0] }, { pos: [1.5, -1.5, 2], rotation: [0, 0, 0] },
-      //side2
+      // Back face
       { pos: [-1.5, 1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [-0.5, 1.5, -2], rotation: [0, Math.PI, 0] },
       { pos: [0.5, 1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [1.5, 1.5, -2], rotation: [0, Math.PI, 0] },
       { pos: [-1.5, 0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [-0.5, 0.5, -2], rotation: [0, Math.PI, 0] },
@@ -67,7 +66,7 @@ export default function GameScreen() {
       { pos: [0.5, -0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [1.5, -0.5, -2], rotation: [0, Math.PI, 0] },
       { pos: [-1.5, -1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [-0.5, -1.5, -2], rotation: [0, Math.PI, 0] },
       { pos: [0.5, -1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [1.5, -1.5, -2], rotation: [0, Math.PI, 0] },
-      //side3
+      // Top face
       { pos: [-1.5, 2, 1.5], rotation: [-Math.PI / 2, 0, 0] }, { pos: [-0.5, 2, 1.5], rotation: [-Math.PI / 2, 0, 0] },
       { pos: [0.5, 2, 1.5], rotation: [-Math.PI / 2, 0, 0] }, { pos: [1.5, 2, 1.5], rotation: [-Math.PI / 2, 0, 0] },
       { pos: [-1.5, 2, 0.5], rotation: [-Math.PI / 2, 0, 0] }, { pos: [-0.5, 2, 0.5], rotation: [-Math.PI / 2, 0, 0] },
@@ -76,7 +75,7 @@ export default function GameScreen() {
       { pos: [0.5, 2, -0.5], rotation: [-Math.PI / 2, 0, 0] }, { pos: [1.5, 2, -0.5], rotation: [-Math.PI / 2, 0, 0] },
       { pos: [-1.5, 2, -1.5], rotation: [-Math.PI / 2, 0, 0] }, { pos: [-0.5, 2, -1.5], rotation: [-Math.PI / 2, 0, 0] },
       { pos: [0.5, 2, -1.5], rotation: [-Math.PI / 2, 0, 0] }, { pos: [1.5, 2, -1.5], rotation: [-Math.PI / 2, 0, 0] },
-      //side4
+      // Bottom face
       { pos: [-1.5, -2, 1.5], rotation: [Math.PI / 2, 0, 0] }, { pos: [-0.5, -2, 1.5], rotation: [Math.PI / 2, 0, 0] },
       { pos: [0.5, -2, 1.5], rotation: [Math.PI / 2, 0, 0] }, { pos: [1.5, -2, 1.5], rotation: [Math.PI / 2, 0, 0] },
       { pos: [-1.5, -2, 0.5], rotation: [Math.PI / 2, 0, 0] }, { pos: [-0.5, -2, 0.5], rotation: [Math.PI / 2, 0, 0] },
@@ -85,26 +84,26 @@ export default function GameScreen() {
       { pos: [0.5, -2, -0.5], rotation: [Math.PI / 2, 0, 0] }, { pos: [1.5, -2, -0.5], rotation: [Math.PI / 2, 0, 0] },
       { pos: [-1.5, -2, -1.5], rotation: [Math.PI / 2, 0, 0] }, { pos: [-0.5, -2, -1.5], rotation: [Math.PI / 2, 0, 0] },
       { pos: [0.5, -2, -1.5], rotation: [Math.PI / 2, 0, 0] }, { pos: [1.5, -2, -1.5], rotation: [Math.PI / 2, 0, 0] },
-      //side5
-      { pos: [2, 1.5, 1.5], rotation: [0, -Math.PI / 2, 0] }, { pos: [2, 1.5, 0.5], rotation: [0, -Math.PI / 2, 0] },
-      { pos: [2, 1.5, -0.5], rotation: [0, -Math.PI / 2, 0] }, { pos: [2, 1.5, -1.5], rotation: [0, -Math.PI / 2, 0] },
-      { pos: [2, 0.5, 1.5], rotation: [0, -Math.PI / 2, 0] }, { pos: [2, 0.5, 0.5], rotation: [0, -Math.PI / 2, 0] },
-      { pos: [2, 0.5, -0.5], rotation: [0, -Math.PI / 2, 0] }, { pos: [2, 0.5, -1.5], rotation: [0, -Math.PI / 2, 0] },
-      { pos: [2, -0.5, 1.5], rotation: [0, -Math.PI / 2, 0] }, { pos: [2, -0.5, 0.5], rotation: [0, -Math.PI / 2, 0] },
-      { pos: [2, -0.5, -0.5], rotation: [0, -Math.PI / 2, 0] }, { pos: [2, -0.5, -1.5], rotation: [0, -Math.PI / 2, 0] },
-      { pos: [2, -1.5, 1.5], rotation: [0, -Math.PI / 2, 0] }, { pos: [2, -1.5, 0.5], rotation: [0, -Math.PI / 2, 0] },
-      { pos: [2, -1.5, -0.5], rotation: [0, -Math.PI / 2, 0] }, { pos: [2, -1.5, -1.5], rotation: [0, -Math.PI / 2, 0] },
-      //side6
-      { pos: [-2, 1.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [-2, 1.5, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [-2, 1.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [-2, 1.5, -1.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [-2, 0.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [-2, 0.5, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [-2, 0.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [-2, 0.5, -1.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [-2, -0.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [-2, -0.5, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [-2, -0.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [-2, -0.5, -1.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [-2, -1.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [-2, -1.5, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [-2, -1.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [-2, -1.5, -1.5], rotation: [0, Math.PI / 2, 0] }
+      // Left face
+      { pos: [-2, 1.5, 1.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] }, { pos: [-2, 1.5, 0.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] },
+      { pos: [-2, 1.5, -0.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] }, { pos: [-2, 1.5, -1.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] },
+      { pos: [-2, 0.5, 1.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] }, { pos: [-2, 0.5, 0.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] },
+      { pos: [-2, 0.5, -0.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] }, { pos: [-2, 0.5, -1.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] },
+      { pos: [-2, -0.5, 1.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] }, { pos: [-2, -0.5, 0.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] },
+      { pos: [-2, -0.5, -0.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] }, { pos: [-2, -0.5, -1.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] },
+      { pos: [-2, -1.5, 1.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] }, { pos: [-2, -1.5, 0.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] },
+      { pos: [-2, -1.5, -0.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] }, { pos: [-2, -1.5, -1.5], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2 ] },
+      // Right face
+      { pos: [2, 1.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, 1.5, 0.5], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2, 1.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, 1.5, -1.5], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2, 0.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, 0.5, 0.5], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2, 0.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, 0.5, -1.5], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2, -0.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, -0.5, 0.5], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2, -0.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, -0.5, -1.5], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2, -1.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, -1.5, 0.5], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2, -1.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, -1.5, -1.5], rotation: [0, Math.PI / 2, 0] },
     ];
-
+  
     try {
       for (let i = 0; i < positions.length; i++) {
         const letter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)];
@@ -114,15 +113,16 @@ export default function GameScreen() {
     } catch (error) {
       console.error('Error creating text:', error);
     }
-
+  
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
       gl.endFrameEXP();
     };
-
+  
     animate();
   };
+  
 
   const handleRotate = ({ translationX, translationY }) => {
     console.log('handleRotate called with', translationX, translationY);
