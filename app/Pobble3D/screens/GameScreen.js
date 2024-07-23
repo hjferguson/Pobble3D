@@ -124,8 +124,8 @@ export default function GameScreen() {
   const handleRotate = ({ translationX, translationY }) => {
     console.log('handleRotate called with', translationX, translationY);
     if(cubeRef.current) {
-      cubeRef.current.rotation.y += translationX * 0.01;
-      cubeRef.current.rotation.x += translationY * 0.01;
+      cubeRef.current.rotation.y += translationX * 0.001;
+      cubeRef.current.rotation.x += translationY * 0.001;
       console.log('Rotate x:', cubeRef.current.rotation.x, 'Rotate y:', cubeRef.current.rotation.y);
     }
   }
