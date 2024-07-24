@@ -8,7 +8,7 @@ export function createText(letter, position, font, rotation) {
     const textGeometry = new TextGeometry(letter, {
       font: font,
       size: 0.5,
-      height: 0.1,
+      height: 0.001,
     });
 
     const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
