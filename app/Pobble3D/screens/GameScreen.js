@@ -17,7 +17,6 @@ export default function GameScreen() {
     const loadFont = async () => {
       try {
         const loadedFontJson = await loadFonts();
-        console.log('Loaded Font JSON:', loadedFontJson); // Log the font data
         setFontJson(loadedFontJson);
       } catch (e) {
         console.error('Error loading font', e);
@@ -59,14 +58,14 @@ export default function GameScreen() {
       { pos: [-1.5, -1.5, 2], rotation: [0, 0, 0] }, { pos: [-0.5, -1.5, 2], rotation: [0, 0, 0] },
       { pos: [0.5, -1.5, 2], rotation: [0, 0, 0] }, { pos: [1.5, -1.5, 2], rotation: [0, 0, 0] },
       // Back face
-      { pos: [-1.5, 1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [-0.5, 1.5, -2], rotation: [0, Math.PI, 0] },
-      { pos: [0.5, 1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [1.5, 1.5, -2], rotation: [0, Math.PI, 0] },
-      { pos: [-1.5, 0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [-0.5, 0.5, -2], rotation: [0, Math.PI, 0] },
-      { pos: [0.5, 0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [1.5, 0.5, -2], rotation: [0, Math.PI, 0] },
-      { pos: [-1.5, -0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [-0.5, -0.5, -2], rotation: [0, Math.PI, 0] },
-      { pos: [0.5, -0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [1.5, -0.5, -2], rotation: [0, Math.PI, 0] },
-      { pos: [-1.5, -1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [-0.5, -1.5, -2], rotation: [0, Math.PI, 0] },
-      { pos: [0.5, -1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [1.5, -1.5, -2], rotation: [0, Math.PI, 0] },
+      { pos: [-1, 1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [0, 1.5, -2], rotation: [0, Math.PI, 0] },
+      { pos: [1, 1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [2, 1.5, -2], rotation: [0, Math.PI, 0] },
+      { pos: [-1, 0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [0, 0.5, -2], rotation: [0, Math.PI, 0] },
+      { pos: [1, 0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [2, 0.5, -2], rotation: [0, Math.PI, 0] },
+      { pos: [-1, -0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [0, -0.5, -2], rotation: [0, Math.PI, 0] },
+      { pos: [1, -0.5, -2], rotation: [0, Math.PI, 0] }, { pos: [2, -0.5, -2], rotation: [0, Math.PI, 0] },
+      { pos: [-1, -1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [0, -1.5, -2], rotation: [0, Math.PI, 0] },
+      { pos: [1, -1.5, -2], rotation: [0, Math.PI, 0] }, { pos: [2, -1.5, -2], rotation: [0, Math.PI, 0] },
       // Top face
       { pos: [-1.5, 2, 1.5], rotation: [-Math.PI / 2, 0, 0] }, { pos: [-0.5, 2, 1.5], rotation: [-Math.PI / 2, 0, 0] },
       { pos: [0.5, 2, 1.5], rotation: [-Math.PI / 2, 0, 0] }, { pos: [1.5, 2, 1.5], rotation: [-Math.PI / 2, 0, 0] },
@@ -106,7 +105,7 @@ export default function GameScreen() {
     ];
 
     const createLine = (x1, y1, z1, x2, y2, z2) => {
-      const material = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 4 });
+      const material = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 8 });
       const points = [];
       points.push(new THREE.Vector3(x1, y1, z1));
       points.push(new THREE.Vector3(x2, y2, z2));
@@ -168,8 +167,8 @@ export default function GameScreen() {
 
   const handleRotate = ({ translationX, translationY }) => {
     if (cubeRef.current) {
-      cubeRef.current.rotation.y += translationX * 0.0001;
-      cubeRef.current.rotation.x += translationY * 0.0001;
+      cubeRef.current.rotation.y += translationX * 0.0009;
+      cubeRef.current.rotation.x += translationY * 0.0009;
     }
   };
 

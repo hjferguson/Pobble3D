@@ -8,12 +8,21 @@ export function createText(letter, position, font, rotation) {
     const textGeometry = new TextGeometry(letter, {
       font: font,
       size: 0.5,
-      height: 0.001,
+      height: 0.1,
     });
 
+    // Compute the bounding box of the text geometry
+    textGeometry.computeBoundingBox();
+    const boundingBox = textGeometry.boundingBox;
+    const textWidth = boundingBox.max.x - boundingBox.min.x;
+    const textHeight = boundingBox.max.y - boundingBox.min.y;
+
+    // Create material and mesh
     const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
     const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    textMesh.position.set(position[0], position[1], position[2]);
+
+    // Center the text mesh within the grid cell
+    textMesh.position.set(position[0] - textWidth / 2, position[1] - textHeight / 2, position[2]);
     textMesh.rotation.set(rotation[0], rotation[1], rotation[2]);
 
     return textMesh;
