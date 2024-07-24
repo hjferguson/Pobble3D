@@ -1,0 +1,4 @@
+when in game, and using android backbutton to get to menu, then going back to game and repeating
+this starts to slow everything down. i dont think the processes are getting killed... need to look into.
+July 24
+----
