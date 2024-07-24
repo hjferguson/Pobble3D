@@ -94,14 +94,14 @@ export default function GameScreen() {
       { pos: [-1.75, -1.5, 1.25], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2] }, { pos: [-1.75, -1.5, 0.25], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2] },
       { pos: [-1.75, -1.5, -0.75], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2] }, { pos: [-1.75, -1.5, -1.75], rotation: [Math.PI / 2, -Math.PI / 2, Math.PI / 2] },
       // Right face
-      { pos: [2, 1.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, 1.5, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [2, 1.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, 1.5, -1.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [2, 0.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, 0.5, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [2, 0.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, 0.5, -1.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [2, -0.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, -0.5, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [2, -0.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, -0.5, -1.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [2, -1.5, 1.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, -1.5, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { pos: [2, -1.5, -0.5], rotation: [0, Math.PI / 2, 0] }, { pos: [2, -1.5, -1.5], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2.25, 1.5, 1.75], rotation: [0, Math.PI / 2, 0] }, { pos: [2.25, 1.5, 0.75], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2.25, 1.5, -0.25], rotation: [0, Math.PI / 2, 0] }, { pos: [2.25, 1.5, -1.25], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2.25, 0.5, 1.75], rotation: [0, Math.PI / 2, 0] }, { pos: [2.25, 0.5, 0.75], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2.25, 0.5, -0.25], rotation: [0, Math.PI / 2, 0] }, { pos: [2.25, 0.5, -1.25], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2.25, -0.5, 1.75], rotation: [0, Math.PI / 2, 0] }, { pos: [2.25, -0.5, 0.75], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2.25, -0.5, -0.25], rotation: [0, Math.PI / 2, 0] }, { pos: [2.25, -0.5, -1.25], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2.25, -1.5, 1.75], rotation: [0, Math.PI / 2, 0] }, { pos: [2.25, -1.5, 0.75], rotation: [0, Math.PI / 2, 0] },
+      { pos: [2.25, -1.5, -0.25], rotation: [0, Math.PI / 2, 0] }, { pos: [2.25, -1.5, -1.25], rotation: [0, Math.PI / 2, 0] },
     ];
 
     const createLine = (x1, y1, z1, x2, y2, z2) => {
@@ -167,8 +167,8 @@ export default function GameScreen() {
 
   const handleRotate = ({ translationX, translationY }) => {
     if (cubeRef.current) {
-      cubeRef.current.rotation.y += translationX * 0.0009;
-      cubeRef.current.rotation.x += translationY * 0.0009;
+      cubeRef.current.rotation.y += translationX * 0.0001;
+      cubeRef.current.rotation.x += translationY * 0.0001;
     }
   };
 
